@@ -1,0 +1,17 @@
+name: Deploy Production Infrastructure
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terraform:
+    name: 'Terraform Production'
+    runs-on: ubuntu-latest
+    environment: production # This is the key change
+  env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  steps:
+  # ... steps for checkout, setup, init, plan, apply ...
+  # (These would be similar to the staging workflow, but might use
+  # a different state key and different variable values for production)
